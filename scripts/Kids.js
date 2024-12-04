@@ -2,23 +2,25 @@ import { getChildren } from "./database.js";
 
 const children = getChildren();
 
-document.addEventListener("click", (clickEvent) => {
-	const target = clickEvent.target;
-	if (target.dataset.type === "child") {
-		window.alert(`${target.innerText}'s wish is ${target.dataset.wish}`);
-	}
-});
+document.addEventListener(
+	"click",
+	({
+		target: {
+			innerText,
+			dataset: { wish, type },
+		},
+	}) => type === "child" && window.alert(`${innerText}'s wish is ${wish}`),
+);
 
-export const Kids = () => {
-	let html = "<ol>";
+export const Kids = () =>
+	`"<ol>"
 
-	for (const child of children) {
-		html += `<li data-id="${child.id}"
-                  data-type="child" 
-                  data-wish="${child.wish}"
-                  >${child.name}</li>`;
-	}
-
-	html += "</ol>";
-	return html;
-};
+	${children
+		.map(
+			(kid) =>
+				`<li data-id="${kid.id}"
+                data-type="child" 
+                data-wish="${kid.wish}"
+                >${kid.name}</li>`,
+		)
+		.join("")} </ol>`;

@@ -2,28 +2,31 @@ import { getCelebrities } from "./database.js";
 
 const celebrities = getCelebrities();
 
-document.addEventListener("click", (clickEvent) => {
-	const clickTarget = clickEvent.target;
-	if (clickTarget.dataset.type === "celebrity") {
-		window.alert(
-			`${clickTarget.innerText} is a ${clickTarget.dataset.sport} star`,
-		);
-	}
-});
+document.addEventListener(
+	"click",
+	({
+		target: {
+			innerText,
+			dataset: { sport, type },
+		},
+	}) => type === "celebrity" && window.alert(`${innerText} is a ${sport} star`),
+);
 
-export const Celebrities = () => {
-	let html = "<ol>";
-
-	for (const celebrity of celebrities) {
-		html += `<li 
-                    data-id="${celebrity.id}" 
-                    data-type="celebrity"
-                    data-sport="${celebrity.sport}"
-                    id="star--${celebrity.id}">
-                    ${celebrity.name}
-                </li>`;
-	}
-
-	html += "</ol>";
-	return html;
-};
+export const Celebrities = () =>
+	`
+    <ol>
+      ${celebrities
+				.map(
+					(celebrity) => `
+          <li 
+              data-id="${celebrity.id}" 
+              data-type="celebrity"
+              data-sport="${celebrity.sport}"
+              id="star--${celebrity.id}">
+              ${celebrity.name}
+          </li>
+        `,
+				)
+				.join("")}
+    </ol>
+  `;
