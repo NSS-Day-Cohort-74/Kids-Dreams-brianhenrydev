@@ -35,10 +35,18 @@ Make sure your Developer Tools are open at all times while working on this proje
 Before you click the "Complete Assessment" button on the Learning Platform, add your answers below each question and make a commit.
 
 1. When a child is clicked on in the browser, which module contains the code that will execute on that event happening? Can you explain the algorithm of that logic?
-   > Your answer here
+   > the code for the Event Listener triggered by clicking on a childs name is in the Kids module.
+    1.) First a click event listener is added to the entire document
+    2.) When an html element is clicked on, the listener captures that element.
+    3.) Then the data attribute "type" of the captured element is checked for equality with the string "child"
+    4.) If equal, the window.alert() method is utilized to display a message via a interpolated string
 2. In the **Pairings** module, why must the `findCelebrityMatch()` function be invoked inside the `for..of` loop that iterates the kids array?
-   > Your answer here
+   > It must be invoked inside the for of loop to dynamically match each kid to their specified celebrity. 
+     And use that data to build the <li> interpolated html string for displaying the the children. 
 3. In the **CelebrityList** module, can you describe how the name of the sport that the celebrity plays can be displayed in the window alert text?
-   > Your answer here
+   > It can be displayed by using the "sport" dataset attribute of the target of the click event.
 4. Can you describe, in detail, the algorithm that is in the `main` module?
-   > Your answer here
+   > 1.) A reference to the element with an id of "container" is stored in the variable "mainContainer"
+     2.) A new variable "applicationHTML" is defined with the value of an interpolated html string
+     3.) the .innerHTML attribute of the element referenced with the mainContainer variable is used
+         to inject the applicationHTML string into the element with the id "container"
